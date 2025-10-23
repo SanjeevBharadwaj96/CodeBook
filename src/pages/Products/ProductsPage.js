@@ -1,20 +1,44 @@
-import { useState } from "react";
-import { ProductCard } from "../../componenets/ProductCard";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import { useTitle } from "../../customHooks/useTitle";
+import { useFilter } from "../../context";
 import { FilterMenu } from "./components/FilterMenu";
+import { ProductCard } from "../../componenets/ProductCard";
+import { useCart } from "../../context/CartContext";
 
 export const ProductsPage = () => {
+  const { products, initialProductList } = useFilter();
+  console.log("products ", products);
   const [show, setShow] = useState(false);
+  const search = useLocation().search;
+  const searchTerm = new URLSearchParams(search).get("q");
+  useTitle("Explore eBooks Collection");
+
+  useEffect(() => {
+    async function fetchProducts() {
+      const response = await fetch(
+        `http://localhost:8000/products?name_like=${
+          searchTerm ? searchTerm : ""
+        }`
+      );
+      const data = await response.json();
+      initialProductList(data);
+      console.log("productList ", products);
+    }
+    fetchProducts();
+  }, [searchTerm]);
+
   return (
     <main>
       <section className="my-5">
         <div className="my-5 flex justify-between">
           <span className="text-2xl font-semibold dark:text-slate-100 mb-5">
-            All eBooks (15)
+            All eBooks ({products.length})
           </span>
           <span>
             <button
-              id="dropdownMenuIconButton"
               onClick={() => setShow(!show)}
+              id="dropdownMenuIconButton"
               data-dropdown-toggle="dropdownDots"
               className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-900 bg-gray-100 rounded-lg hover:bg-gray-200 dark:text-white dark:bg-gray-600 dark:hover:bg-gray-700"
               type="button"
@@ -33,10 +57,12 @@ export const ProductsPage = () => {
         </div>
 
         <div className="flex flex-wrap justify-center lg:flex-row">
-          <ProductCard></ProductCard>
-          <ProductCard></ProductCard>
+          {products.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
         </div>
       </section>
+
       {show && <FilterMenu setShow={setShow} />}
     </main>
   );

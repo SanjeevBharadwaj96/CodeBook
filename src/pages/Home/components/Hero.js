@@ -4,8 +4,10 @@ export const Hero = () => {
   return (
     <section className="flex flex-col lg:flex-row dark:text-slate-800 items-center">
       <div className="text my-5">
-        <h1 className="text-5xl font-bold">The Ultimate eBook Store</h1>
-        <p className="text-2xl my-7 px-1 dark:text-black-500">
+        <h1 className="text-5xl dark:text-white font-bold">
+          The Ultimate eBook Store
+        </h1>
+        <p className="text-2xl my-7 px-1 dark:text-white">
           CodeBook is the world's most popular and authoritative source for
           computer science ebooks. Find ratings and access to the newest books
           digitally.
