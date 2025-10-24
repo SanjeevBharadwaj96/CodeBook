@@ -6,6 +6,8 @@ import { Login } from "../pages/Login";
 import { Register } from "../pages/Register";
 import { CartPage } from "../pages/Cart/CartPage";
 import { ProtectedRoutes } from "./ProtectedRoutes";
+import { OrderPage } from "../pages/Order/OrderPage";
+import { DashboardPage } from "../pages/Dashboard/DashboardPage";
 
 export const AllRoutes = () => {
   return (
@@ -19,6 +21,22 @@ export const AllRoutes = () => {
           element={
             <ProtectedRoutes>
               <CartPage />
+            </ProtectedRoutes>
+          }
+        />
+        <Route
+          path="/order-summary"
+          element={
+            <ProtectedRoutes>
+              <OrderPage />
+            </ProtectedRoutes>
+          }
+        />
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoutes>
+              <DashboardPage />
             </ProtectedRoutes>
           }
         />

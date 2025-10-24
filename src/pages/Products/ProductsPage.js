@@ -8,7 +8,6 @@ import { useCart } from "../../context/CartContext";
 
 export const ProductsPage = () => {
   const { products, initialProductList } = useFilter();
-  console.log("products ", products);
   const [show, setShow] = useState(false);
   const search = useLocation().search;
   const searchTerm = new URLSearchParams(search).get("q");
@@ -23,7 +22,6 @@ export const ProductsPage = () => {
       );
       const data = await response.json();
       initialProductList(data);
-      console.log("productList ", products);
     }
     fetchProducts();
   }, [searchTerm]);
