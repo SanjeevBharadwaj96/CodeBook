@@ -1,11 +1,11 @@
 import { useTitle } from "../../customHooks/useTitle";
 import { useCart } from "../../context/CartContext";
 import { CartList } from "./components/CartList";
-import { CartEmpty } from "./components/CartEmpty";
+import { CartEmpty } from "./components/cartEmpty";
 
 export const CartPage = () => {
   useTitle("Cart");
   const { cartList } = useCart();
 
-  return <main>{cartList.length ? <CartList /> : <CartEmpty />}</main>;
+  return <main>{cartList.length ? <CartList /> : <cartEmpty />}</main>;
 };
