@@ -4,8 +4,7 @@ import { useCart } from "../context/CartContext";
 import { useEffect, useState } from "react";
 
 export const ProductCard = ({ product }) => {
-  const { id, name, overview, price, poster, rating, in_stock, best_seller } =
-    product;
+  const { id, rating } = product;
   const [inCart, setInCart] = useState(false);
   const { cartList, addToCart, removeFromCart } = useCart();
 

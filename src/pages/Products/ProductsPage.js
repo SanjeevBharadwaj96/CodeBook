@@ -15,7 +15,7 @@ export const ProductsPage = () => {
   const searchTerm = new URLSearchParams(search).get("q");
   useTitle("Explore eBooks Collection");
 
-  const [error, setError] = useState("");
+  const [error, setError] = useState(""); //eslint-disable-line
   useEffect(() => {
     async function fetchProducts() {
       try {
@@ -27,7 +27,7 @@ export const ProductsPage = () => {
       }
     }
     fetchProducts();
-  }, [searchTerm]);
+  }, [searchTerm]); //eslint-disable-line
 
   return (
     <main>

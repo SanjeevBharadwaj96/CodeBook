@@ -1,5 +1,3 @@
-import { useNavigate } from "react-router-dom";
-
 function getSession() {
   const token = JSON.parse(sessionStorage.getItem("token"));
   const userId = JSON.parse(sessionStorage.getItem("cbid"));

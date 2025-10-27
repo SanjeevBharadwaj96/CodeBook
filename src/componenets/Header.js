@@ -24,7 +24,7 @@ export const Header = () => {
     isDarkMode && darkmode
       ? document.documentElement.classList.add("dark")
       : document.documentElement.classList.remove("dark");
-  }, [darkmode]);
+  }, [darkmode]); //eslint-disable-line
 
   return (
     <header>
