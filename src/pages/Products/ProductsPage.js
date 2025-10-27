@@ -4,7 +4,9 @@ import { useTitle } from "../../customHooks/useTitle";
 import { useFilter } from "../../context";
 import { FilterMenu } from "./components/FilterMenu";
 import { ProductCard } from "../../componenets/ProductCard";
-import { useCart } from "../../context/CartContext";
+
+import { getProductList } from "../../services/ProductService";
+import { toast } from "react-toastify";
 
 export const ProductsPage = () => {
   const { products, initialProductList } = useFilter();
@@ -13,15 +15,16 @@ export const ProductsPage = () => {
   const searchTerm = new URLSearchParams(search).get("q");
   useTitle("Explore eBooks Collection");
 
+  const [error, setError] = useState("");
   useEffect(() => {
     async function fetchProducts() {
-      const response = await fetch(
-        `http://localhost:8000/products?name_like=${
-          searchTerm ? searchTerm : ""
-        }`
-      );
-      const data = await response.json();
-      initialProductList(data);
+      try {
+        const data = await getProductList(searchTerm);
+        initialProductList(data);
+        setError("");
+      } catch (error) {
+        toast.error(error.message); // Go through React-toastify documentation
+      }
     }
     fetchProducts();
   }, [searchTerm]);

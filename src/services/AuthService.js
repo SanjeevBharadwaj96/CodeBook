@@ -1,5 +1,5 @@
-export async function login({ authDetail }) {
-  const response = await fetch("http://localhost:8000/login", {
+export async function login(authDetail) {
+  const response = await fetch(`${process.env.REACT_APP_HOST}/login`, {
     method: "POST",
     headers: {
       "content-type": "application/json",
@@ -16,8 +16,9 @@ export async function login({ authDetail }) {
   return data;
 }
 
-export async function register({ authDetail }) {
-  const response = await fetch("http://localhost:8000/register", {
+export async function register(authDetail) {
+  console.log("register auth detail called");
+  const response = await fetch(`${process.env.REACT_APP_HOST}/resgister`, {
     method: "POST",
     headers: {
       "content-type": "application/json",

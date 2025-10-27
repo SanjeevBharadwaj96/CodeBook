@@ -11,6 +11,7 @@ export const Register = () => {
       email: event.target.email.value,
       password: event.target.password.value,
     };
+    console.log("authDetail ", authDetail);
     const data = await register(authDetail);
     data.accessToken ? navigate("/products") : toast.error(data); //Check index.js for toastify and also app.js
   }
