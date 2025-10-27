@@ -10,7 +10,7 @@ export const DashboardCard = ({ order }) => {
       </div>
       {order.cartList.map((product) => (
         <div
-          ley={product.id}
+          key={product.id}
           className="flex flex-wrap justify-between max-w-4xl m-auto p-2 my-5 "
         >
           <div className="flex">
